@@ -28,12 +28,14 @@
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
-
-    <mat-paginator
-      [length]="totalCount"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[5, 10, 15]"
-      (page)="onPageChange($event)"
-    />
   }
+
+  <mat-paginator
+    [class.hidden]="isLoading"
+    [length]="totalCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15]"
+    (page)="onPageChange($event)"
+    class="pagination-left"
+  />
 </div>
