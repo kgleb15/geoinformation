@@ -1,1 +1,38 @@
-<p>countries works!</p>
+<div class="container">
+  @if (isLoading) {
+    <mat-spinner />
+  }
+
+  <table mat-table [dataSource]="countries">
+    <ng-container matColumnDef="wikiDataId">
+      <th mat-header-cell *matHeaderCellDef>ID страны</th>
+      <td mat-cell *matCellDef="let country">{{country.wikiDataId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Наименование</th>
+      <td mat-cell *matCellDef="let country">{{ country.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Код страны</th>
+      <td mat-cell *matCellDef="let country">{{ country.code }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="currencyCodes">
+      <th mat-header-cell *matHeaderCellDef>Коды валют</th>
+      <td mat-cell *matCellDef="let country">КоДы ВаЛюТ</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15]"
+    (page)="onPageChange($event)"
+  />
+
+</div>
