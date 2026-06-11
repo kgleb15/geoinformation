@@ -10,7 +10,7 @@ import { Country } from '../../core/models/country.model';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { MatFormField } from '@angular/material/input';
+import { MatFormField, MatInput } from '@angular/material/input';
 import { MatSelect } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -40,6 +40,7 @@ import { City } from '../../core/models/city.model';
     DecimalPipe,
     MatHeaderCellDef,
     MatPaginator,
+    MatInput,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -67,7 +68,7 @@ export class Cities implements OnInit {
   }
 
   loadCountries(): void {
-    this.geoService.getCountries(196, 0).subscribe({
+    this.geoService.getCountries(10, 0).subscribe({
       next: (response) => {
         this.countries = response.data;
         this.cdr.markForCheck();
