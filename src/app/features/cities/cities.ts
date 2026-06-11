@@ -19,6 +19,7 @@ import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell,
 import { DecimalPipe } from '@angular/common';
 import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cities',
@@ -64,7 +65,13 @@ export class Cities implements OnInit {
   pageIndex = 0;
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
 
+  private route = inject(ActivatedRoute);
+
   ngOnInit() {
+    const countryFromUrl = this.route.snapshot.queryParamMap.get('countryCode');
+    if (countryFromUrl) {
+      this.selectedCountry = countryFromUrl;
+    }
     this.loadCountries();
     this.loadCities();
   }

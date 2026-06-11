@@ -5,10 +5,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { City } from '../../core/models/city.model';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-countries',
-  imports: [MatTableModule, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatIcon, MatIconButton],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,6 +27,8 @@ export class Countries implements OnInit {
   pageSize = 10;
   pageIndex = 0;
   columnsToDisplay = ['wikiDataId', 'name', 'code', 'currencyCodes'];
+
+  private router = inject(Router);
 
   private cdr = inject(ChangeDetectorRef);
 
@@ -53,5 +59,9 @@ export class Countries implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadCountries();
+  }
+
+  goToCities(countryCode: string): void {
+    this.router.navigate(['/cities'], { queryParams: { countryCode } });
   }
 }
