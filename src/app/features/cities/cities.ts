@@ -18,6 +18,7 @@ import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell,
   MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable } from '@angular/material/table';
 import { DecimalPipe } from '@angular/common';
 import { City } from '../../core/models/city.model';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-cities',
@@ -41,6 +42,7 @@ import { City } from '../../core/models/city.model';
     MatHeaderCellDef,
     MatPaginator,
     MatInput,
+    MatIconButton,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -115,5 +117,13 @@ export class Cities implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadCities();
+  }
+
+  onEdit(city: City): void {
+    //
+  }
+
+  onView(city: City): void {
+    //
   }
 }
