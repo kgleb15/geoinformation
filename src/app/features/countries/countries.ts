@@ -26,7 +26,7 @@ export class Countries implements OnInit {
 
   pageSize = 10;
   pageIndex = 0;
-  columnsToDisplay = ['wikiDataId', 'name', 'code', 'currencyCodes'];
+  columnsToDisplay = ['wikiDataId', 'action', 'name', 'code', 'currencyCodes'];
 
   private router = inject(Router);
 
