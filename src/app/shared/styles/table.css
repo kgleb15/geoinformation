@@ -5,6 +5,7 @@
 .container {
   position: relative;
   min-height: 400px;
+  margin-top: 10px;
 }
 
 .spinner-container {

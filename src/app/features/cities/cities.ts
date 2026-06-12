@@ -20,6 +20,7 @@ import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { Paginator } from '../../shared/paginator/paginator';
+import { Header } from '../../shared/header/header';
 
 @Component({
   selector: 'app-cities',
@@ -44,6 +45,7 @@ import { Paginator } from '../../shared/paginator/paginator';
     MatInput,
     MatIconButton,
     Paginator,
+    Header,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',

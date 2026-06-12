@@ -10,6 +10,7 @@ import { City } from '../../core/models/city.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { Paginator } from '../../shared/paginator/paginator';
+import { Header } from '../../shared/header/header';
 
 @Component({
   selector: 'app-countries',
@@ -20,6 +21,7 @@ import { Paginator } from '../../shared/paginator/paginator';
     MatIcon,
     MatIconButton,
     Paginator,
+    Header,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
