@@ -1,0 +1,13 @@
+<div class="paginator" xmlns="http://www.w3.org/1999/html">
+  <button (click)="goTo(pageIndex()-1)" [disabled]="pageIndex() === 0"><</button>
+
+  @for (page of pages(); track page) {
+    <button [ngClass] = "{ active : page === pageIndex() }"
+            [disabled]="page==='...'"
+            (click)="goTo(page)">
+            {{ page === '...' ? '...' : (page + 1) }}
+    </button>
+  }
+
+  <button (click)="goTo(pageIndex()+1)" [disabled]="pageIndex() === totalPages()-1">></button>
+</div>

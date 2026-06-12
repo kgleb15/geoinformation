@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { GeoService } from '../../core/services/geo.service';
 import { Country } from '../../core/models/country.model';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatFormField, MatInput } from '@angular/material/input';
@@ -20,6 +19,7 @@ import { DecimalPipe } from '@angular/common';
 import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
+import { Paginator } from '../../shared/paginator/paginator';
 
 @Component({
   selector: 'app-cities',
@@ -41,9 +41,9 @@ import { ActivatedRoute } from '@angular/router';
     MatTable,
     DecimalPipe,
     MatHeaderCellDef,
-    MatPaginator,
     MatInput,
     MatIconButton,
+    Paginator,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -120,9 +120,8 @@ export class Cities implements OnInit {
     this.loadCities();
   }
 
-  onPageChange(event: PageEvent) {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
+  onPageChange(page: number) {
+    this.pageIndex = page;
     this.loadCities();
   }
 

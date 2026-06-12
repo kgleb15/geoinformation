@@ -9,10 +9,18 @@ import { Router } from '@angular/router';
 import { City } from '../../core/models/city.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
+import { Paginator } from '../../shared/paginator/paginator';
 
 @Component({
   selector: 'app-countries',
-  imports: [MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatIcon, MatIconButton],
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatIcon,
+    MatIconButton,
+    Paginator,
+  ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,9 +63,8 @@ export class Countries implements OnInit {
     });
   }
 
-  onPageChange(event: PageEvent) {
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
+  onPageChange(page: number) {
+    this.pageIndex = page;
     this.loadCountries();
   }
 
