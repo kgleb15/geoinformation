@@ -21,6 +21,8 @@ import { MatIconButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
+import { MatDialog } from '@angular/material/dialog';
+import { CityViewDialog } from './city-view-dialog/city-view-dialog';
 
 @Component({
   selector: 'app-cities',
@@ -68,6 +70,7 @@ export class Cities implements OnInit {
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
 
   private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
 
   ngOnInit() {
     const countryFromUrl = this.route.snapshot.queryParamMap.get('countryCode');
@@ -132,6 +135,6 @@ export class Cities implements OnInit {
   }
 
   onView(city: City): void {
-    //
+    this.dialog.open(CityViewDialog, { data: city });
   }
 }
