@@ -1,5 +1,12 @@
 <div class = "header">
-  <h1>Геоинформация</h1>
+  <div class="top-row">
+    <h1>ГЕОИНФОРМАЦИЯ</h1>
+    <mat-radio-group [(ngModel)]="selectedLang" class= "lang-switch">
+      <mat-radio-button value="ru" class="lang-option">RU</mat-radio-button>
+      <mat-radio-button value="en" class="lang-option">EN</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
 
   <nav class="tabs">
     <a routerLink="/countries" routerLinkActive="active" class="tab">Страны</a>

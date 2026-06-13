@@ -5,7 +5,7 @@
 .header h1 {
   font-size: 24px;
   font-weight: bold;
-  margin: 0 0 16px 0;
+  margin: 40px 0 25px 0;
 }
 
 .tabs {
@@ -23,5 +23,16 @@
 
 .tab.active {
   color: #000000;
-  border-bottom-color: #5062c3;
+  border-bottom-color: #717171;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 15px;
 }
