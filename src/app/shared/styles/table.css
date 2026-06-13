@@ -2,10 +2,20 @@
   color: #9e9e9e;
 }
 
+.container .mat-mdc-cell, .container .mat-mdc-header-cell {
+  padding: 5px 0;
+  width: 20%;
+  border-bottom-color: #d1d1d1
+}
+
+.mat-mdc-row:hover {
+  background-color: #ffffff;
+}
+
 .container {
   position: relative;
   min-height: 400px;
-  margin-top: 10px;
+  margin: 0 40px;
 }
 
 .spinner-container {
@@ -25,4 +35,13 @@
 
 .pagination-left {
   float: left;
+}
+
+.container .action-column {
+  width: 7%;
+  text-align: left;
+}
+
+.mat-icon {
+  color: #777777;
 }
