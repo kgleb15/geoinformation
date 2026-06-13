@@ -11,6 +11,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-countries',
@@ -22,6 +24,10 @@ import { Header } from '../../shared/header/header';
     MatIconButton,
     Paginator,
     Header,
+    MatFormField,
+    MatInput,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
@@ -38,6 +44,8 @@ export class Countries implements OnInit {
   pageIndex = 0;
   columnsToDisplay = ['wikiDataId', 'action', 'name', 'code', 'currencyCodes'];
 
+  searchName = '';
+
   private router = inject(Router);
 
   private cdr = inject(ChangeDetectorRef);
@@ -50,7 +58,7 @@ export class Countries implements OnInit {
     this.isLoading = true;
     const offset = this.pageIndex * this.pageSize;
 
-    this.geoService.getCountries(this.pageSize, offset).subscribe({
+    this.geoService.getCountries(this.pageSize, offset, this.searchName || undefined).subscribe({
       next: (response) => {
         this.countries = response.data;
         this.totalCount = response.metadata.totalCount;
@@ -72,5 +80,10 @@ export class Countries implements OnInit {
 
   goToCities(countryCode: string): void {
     this.router.navigate(['/cities'], { queryParams: { countryCode } });
+  }
+
+  onSearchChanged(): void {
+    this.pageIndex = 0;
+    this.loadCountries();
   }
 }
