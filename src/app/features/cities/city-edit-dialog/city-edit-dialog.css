@@ -1,0 +1,31 @@
+.dialog-content {
+  padding: 35px;
+  min-width: 400px;
+}
+
+h2 {
+  margin: 0 0 35px 0;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.cancel-button {
+  color: red;
+}

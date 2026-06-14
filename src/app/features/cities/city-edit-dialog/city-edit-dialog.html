@@ -1,0 +1,50 @@
+<div class="dialog-content">
+  <h2>{{data.name}}</h2>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Регион</mat-label>
+      <input matInput formControlName="region"/>
+      <button matSuffix matIconButton aria-label="Clear" (click)="form.get('region')?.reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="two-columns">
+      <mat-form-field appearance="outline">
+        <mat-label>Население</mat-label>
+        <input matInput formControlName="population"/>
+        <button matSuffix matIconButton aria-label="Clear" (click)="form.get('population')?.reset()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Дата основания</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="foundingDate"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"/>
+        <mat-datepicker #picker/>
+      </mat-form-field>
+    </div>
+    <div class="two-columns">
+      <mat-form-field appearance="outline">
+        <mat-label>Долгота</mat-label>
+        <input matInput formControlName="longitude" type="number"/>
+        <button matSuffix matIconButton aria-label="Clear" (click)="form.get('longitude')?.reset()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Широта</mat-label>
+        <input matInput formControlName="latitude" type="number"/>
+        <button matSuffix matIconButton aria-label="Clear" (click)="form.get('latitude')?.reset()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="actions">
+    <button mat-button class="cancel-button" (click)="cancel()">Отменить</button>
+    <button matButton="filled" color="primary" (click)="save()">Сохранить</button>
+  </div>
+</div>
+

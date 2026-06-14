@@ -23,6 +23,7 @@ import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
 import { MatDialog } from '@angular/material/dialog';
 import { CityViewDialog } from './city-view-dialog/city-view-dialog';
+import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
 
 @Component({
   selector: 'app-cities',
@@ -131,7 +132,7 @@ export class Cities implements OnInit {
   }
 
   onEdit(city: City): void {
-    //
+    this.dialog.open(CityEditDialog, { data: city });
   }
 
   onView(city: City): void {
