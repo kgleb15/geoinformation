@@ -9,7 +9,7 @@ import { GeoService } from '../../core/services/geo.service';
 import { Country } from '../../core/models/country.model';
 import { FormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { MatFormField, MatInput } from '@angular/material/input';
+import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { MatSelect } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -49,6 +49,7 @@ import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
     MatIconButton,
     Paginator,
     Header,
+    MatPrefix,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',

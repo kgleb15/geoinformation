@@ -11,7 +11,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
-import { MatFormField, MatInput } from '@angular/material/input';
+import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInput,
     ReactiveFormsModule,
     FormsModule,
+    MatPrefix,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
