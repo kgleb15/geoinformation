@@ -1,0 +1,24 @@
+.paginator {
+  display: flex;
+  gap: 4px;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+.small-button {
+  width: 45px!important;
+  min-width: unset!important;
+  font-size: 16px!important;
+  padding: 0 !important;
+}
+
+.small-button.mat-mdc-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small-button .mat-icon {
+  color: #176dc1;
+}
+

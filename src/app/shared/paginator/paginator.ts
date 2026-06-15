@@ -1,9 +1,11 @@
 import { Component, input, output, computed } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-paginator',
-  imports: [NgClass],
+  imports: [MatButton, MatIcon, MatIconButton],
   templateUrl: './paginator.html',
   styleUrl: './paginator.css',
 })
@@ -32,9 +34,11 @@ export class Paginator {
     }
 
     const start = Math.max(1, current - 2);
-    const end = Math.min(total-2, current + 2);
+    const end = Math.min(total - 2, current + 2);
 
-    for (let i = start; i <= end; i++) { result.push(i); }
+    for (let i = start; i <= end; i++) {
+      result.push(i);
+    }
     if (current < total - 4) result.push('...');
     result.push(total - 1);
 
@@ -42,7 +46,13 @@ export class Paginator {
   });
 
   goTo(page: number | '...') {
-    if (page === '...' || page === this.pageIndex()) { return; }
-    this.pageChange.emit(page)
+    if (page === '...' || page === this.pageIndex()) {
+      return;
+    }
+    this.pageChange.emit(page);
+  }
+
+  isCurrentPage(page: number | '...'): boolean {
+    return page !== '...' && page === this.pageIndex();
   }
 }

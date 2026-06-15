@@ -1,13 +1,23 @@
-<div class="paginator" xmlns="http://www.w3.org/1999/html">
-  <button (click)="goTo(pageIndex()-1)" [disabled]="pageIndex() === 0"><</button>
+<div class="paginator">
+  <button matIconButton class="small-button" (click)="goTo(pageIndex()-1)" [disabled]="pageIndex() === 0">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
 
   @for (page of pages(); track page) {
-    <button [ngClass] = "{ active : page === pageIndex() }"
-            [disabled]="page==='...'"
-            (click)="goTo(page)">
-            {{ page === '...' ? '...' : (page + 1) }}
-    </button>
+    @if (isCurrentPage(page)) {
+      <button matButton="filled" class="small-button">
+        {{ page === '...' ? '...' : (page + 1) }}
+      </button>
+    } @else if (page === '...') {
+      <button matButton class="small-button" [disabled]="true">{{ page }}</button>
+    } @else {
+      <button matButton class="small-button" (click)="goTo(page)">
+        {{ page + 1 }}
+      </button>
+    }
   }
 
-  <button (click)="goTo(pageIndex()+1)" [disabled]="pageIndex() === totalPages()-1">></button>
+  <button matIconButton class="small-button" (click)="goTo(pageIndex()+1)" [disabled]="pageIndex() === totalPages()-1">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
 </div>
