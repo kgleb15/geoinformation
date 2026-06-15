@@ -1,9 +1,9 @@
 .header {
-  margin: 20px;
+  margin: 10px 20px 35px 40px;
 }
 
 .header h1 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   margin: 40px 0 25px 0;
 }
@@ -15,7 +15,7 @@
 }
 
 .tab {
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   color: #7a7a7a;
   text-decoration: none;
   border-bottom: 2px solid transparent;
