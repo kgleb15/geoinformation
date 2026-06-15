@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse } from '../models/api-response.model';
+import { ApiResponseModel } from '../models/api-response.model';
 import { Country } from '../models/country.model';
 import { City } from '../models/city.model';
 
@@ -15,14 +15,14 @@ export class GeoService {
     limit: number,
     offset: number,
     namePrefix?: string,
-  ): Observable<ApiResponse<Country>> {
+  ): Observable<ApiResponseModel<Country>> {
     let params = new HttpParams().set('limit', limit).set('offset', offset);
 
     if (namePrefix) {
       params = params.set('namePrefix', namePrefix);
     }
 
-    return this.http.get<ApiResponse<Country>>(`${this.baseUrl}/countries`, { params });
+    return this.http.get<ApiResponseModel<Country>>(`${this.baseUrl}/countries`, { params });
   }
 
   getCities(
@@ -30,7 +30,7 @@ export class GeoService {
     offset: number,
     countryIds?: string,
     namePrefix?: string,
-  ): Observable<ApiResponse<City>> {
+  ): Observable<ApiResponseModel<City>> {
     let params = new HttpParams().set('limit', limit).set('offset', offset);
 
     if (countryIds) {
@@ -40,6 +40,6 @@ export class GeoService {
       params = params.set('namePrefix', namePrefix);
     }
 
-    return this.http.get<ApiResponse<City>>(`${this.baseUrl}/cities`, { params });
+    return this.http.get<ApiResponseModel<City>>(`${this.baseUrl}/cities`, { params });
   };
 }

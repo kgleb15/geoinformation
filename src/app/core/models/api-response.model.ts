@@ -1,4 +1,4 @@
-export interface ApiResponse<T> {
+export interface ApiResponseModel<T> {
   data: T[];
   metadata: {
     totalCount: number;

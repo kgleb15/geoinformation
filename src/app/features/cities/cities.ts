@@ -79,17 +79,35 @@ export class Cities implements OnInit {
     if (countryFromUrl) {
       this.selectedCountry = countryFromUrl;
     }
-    this.loadCountries();
+    this.loadAllCountries();
     this.loadCities();
   }
 
-  loadCountries(): void {
-    this.geoService.getCountries(10, 0).subscribe({
-      next: (response) => {
-        this.countries = response.data;
-        this.cdr.markForCheck();
-      },
-    });
+  loadAllCountries(): void {
+    const countriesPageSize = 10;
+    let currentPage = 0;
+    let allCountries: Country[] = [];
+
+    const loadNextPage = () => {
+      const offset = currentPage * countriesPageSize;
+      this.geoService.getCountries(countriesPageSize, offset).subscribe({
+        next: (response) => {
+          allCountries = [...allCountries, ...response.data];
+
+          if(response.data.length === countriesPageSize) { // Если еще остались страны для загрузки
+            currentPage++;
+            loadNextPage();
+          } else {
+            this.countries = allCountries;
+            this.cdr.markForCheck();
+            console.log(`Загружено ${this.countries.length} стран`);
+          }
+        }, error: () => {
+          this.cdr.markForCheck();
+        },
+      });
+    };
+    loadNextPage();
   }
 
   loadCities(): void {
