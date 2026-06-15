@@ -19,6 +19,6 @@
 }
 
 .small-button .mat-icon {
-  color: #176dc1;
+  color: var(--color-nav-blue);
 }
 

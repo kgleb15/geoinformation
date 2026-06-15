@@ -33,5 +33,13 @@ h2 {
 }
 
 .cancel-button:hover {
-  background-color: rgb(255 0 0 / 0.1);
+  background-color: var(--color-danger-secondary);
+}
+
+.cancel-button:active {
+  background-color: var(--color-danger-secondary-dark);
+}
+
+.cancel-button:focus {
+  background-color: var(--color-danger-secondary-dark);
 }

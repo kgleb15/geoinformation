@@ -17,7 +17,7 @@ h2 {
 }
 
 .label {
-  color: #757575;
+  color: var(--color-secondary);
 }
 
 .value {
@@ -30,5 +30,5 @@ h2 {
 }
 
 .gray-outline {
-  border-color: #cccccc;
+  border-color: var(--color-border-light);
 }

@@ -7,9 +7,10 @@
 }
 
 .search-field mat-icon {
-  color: #9f9f9f;
+  color: var(--color-secondary);
 }
 
 .search-field input::placeholder {
-  color: #9f9f9f;
+  color: var(--color-secondary);
 }
+

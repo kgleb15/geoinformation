@@ -17,19 +17,19 @@
 }
 
 .search-field mat-icon {
-  color: #9f9f9f;
+  color: var(--color-secondary);
 }
 
 .search-field input::placeholder {
-  color: #9f9f9f;
+  color: var(--color-secondary);
 }
 
 .search-country ::ng-deep .mat-mdc-select-value-text {
-  color: #5a5a5a;
+  color: var(--color-secondary-dark);
 }
 
 .search-country ::ng-deep .mat-mdc-select-arrow {
-  color: #9f9f9f;
+  color: var(--color-secondary);
 }
 
 ::ng-deep .custom-select-panel {
