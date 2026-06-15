@@ -28,3 +28,7 @@ h2 {
   display: flex;
   justify-content: flex-end;
 }
+
+.gray-outline {
+  border-color: #cccccc;
+}
