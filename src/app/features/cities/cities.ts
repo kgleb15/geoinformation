@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CityViewDialog } from './city-view-dialog/city-view-dialog';
 import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
 import { BaseTable } from '../../shared/base-table/base-table';
+import { SearchInput } from '../../shared/search-input/search-input';
 
 @Component({
   selector: 'app-cities',
@@ -49,6 +50,7 @@ import { BaseTable } from '../../shared/base-table/base-table';
     Paginator,
     Header,
     MatPrefix,
+    SearchInput,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -100,7 +102,7 @@ export class Cities extends BaseTable<City> implements OnInit {
   }
 
   protected fetchData(limit: number, offset: number, search?: string) {
-    return this.geoService.getCities(limit, offset, this.selectedCountry || undefined,  search);
+    return this.geoService.getCities(limit, offset, this.selectedCountry || undefined, search);
   }
 
   onCountryChange(): void {

@@ -15,13 +15,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-icon matPrefix>search</mat-icon>
-      <input matInput
-      [(ngModel)]="searchName"
-      (ngModelChange)="onSearchChanged()"
-      placeholder="Поиск"/>
-    </mat-form-field>
+    <app-search-input [(value)]="searchName" (searchChange)="onSearchChanged()"/>
   </div>
 
   @if (isLoading) {

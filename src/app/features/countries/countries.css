@@ -1,16 +1,2 @@
-.search-field {
-  width: 300px;
-}
 
-.search-field input {
-  font-weight: 400;
-}
-
-.search-field mat-icon {
-  color: var(--color-secondary);
-}
-
-.search-field input::placeholder {
-  color: var(--color-secondary);
-}
 

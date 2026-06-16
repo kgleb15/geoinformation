@@ -11,6 +11,7 @@ import { Header } from '../../shared/header/header';
 import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseTable } from '../../shared/base-table/base-table';
+import { SearchInput } from '../../shared/search-input/search-input';
 
 @Component({
   selector: 'app-countries',
@@ -27,6 +28,7 @@ import { BaseTable } from '../../shared/base-table/base-table';
     ReactiveFormsModule,
     FormsModule,
     MatPrefix,
+    SearchInput,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
@@ -40,7 +42,7 @@ export class Countries extends BaseTable<Country> implements OnInit {
     this.load();
   }
 
-  protected fetchData(limit: number, offset: number, search?: string,) {
+  protected fetchData(limit: number, offset: number, search?: string) {
     return this.geoService.getCountries(limit, offset, search);
   }
 

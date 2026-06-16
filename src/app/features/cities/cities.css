@@ -8,22 +8,6 @@
   flex: 1 1 auto;
 }
 
-.search-field {
-  width: 300px;
-}
-
-.search-field input {
-  font-weight: 400;
-}
-
-.search-field mat-icon {
-  color: var(--color-secondary);
-}
-
-.search-field input::placeholder {
-  color: var(--color-secondary);
-}
-
 .search-country ::ng-deep .mat-mdc-select-value-text {
   color: var(--color-secondary-dark);
 }
