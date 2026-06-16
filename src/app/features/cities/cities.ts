@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
 } from '@angular/core';
-import { GeoService } from '../../core/services/geo.service';
 import { Country } from '../../core/models/country.model';
 import { FormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
@@ -24,6 +22,7 @@ import { Header } from '../../shared/header/header';
 import { MatDialog } from '@angular/material/dialog';
 import { CityViewDialog } from './city-view-dialog/city-view-dialog';
 import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
+import { BaseTable } from '../../shared/base-table/base-table';
 
 @Component({
   selector: 'app-cities',
@@ -55,20 +54,9 @@ import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
   styleUrl: './cities.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Cities implements OnInit {
-  private geoService = inject(GeoService);
-  private cdr = inject(ChangeDetectorRef);
-
-  cities: City[] = [];
+export class Cities extends BaseTable<City> implements OnInit {
   countries: Country[] = [];
-  totalCount = 0;
-  isLoading = false;
-
   selectedCountry = '';
-  searchName = '';
-
-  pageSize = 10;
-  pageIndex = 0;
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
 
   private route = inject(ActivatedRoute);
@@ -80,7 +68,7 @@ export class Cities implements OnInit {
       this.selectedCountry = countryFromUrl;
     }
     this.loadAllCountries();
-    this.loadCities();
+    this.load();
   }
 
   loadAllCountries(): void {
@@ -94,15 +82,16 @@ export class Cities implements OnInit {
         next: (response) => {
           allCountries = [...allCountries, ...response.data];
 
-          if(response.data.length === countriesPageSize) { // Если еще остались страны для загрузки
+          if (response.data.length === countriesPageSize) {
+            // Если еще остались страны для загрузки
             currentPage++;
             loadNextPage();
           } else {
             this.countries = allCountries;
             this.cdr.markForCheck();
-            console.log(`Загружено ${this.countries.length} стран`);
           }
-        }, error: () => {
+        },
+        error: () => {
           this.cdr.markForCheck();
         },
       });
@@ -110,44 +99,13 @@ export class Cities implements OnInit {
     loadNextPage();
   }
 
-  loadCities(): void {
-    this.isLoading = true;
-    const offset = this.pageIndex * this.pageSize;
-
-    this.geoService
-      .getCities(
-        this.pageSize,
-        offset,
-        this.selectedCountry || undefined,
-        this.searchName || undefined,
-      )
-      .subscribe({
-        next: (response) => {
-          this.cities = response.data;
-          this.totalCount = response.metadata.totalCount;
-          this.isLoading = false;
-          this.cdr.markForCheck();
-        },
-        error: () => {
-          this.isLoading = false;
-          this.cdr.markForCheck();
-        },
-      });
+  protected fetchData(limit: number, offset: number, search?: string) {
+    return this.geoService.getCities(limit, offset, this.selectedCountry || undefined,  search);
   }
 
   onCountryChange(): void {
     this.pageIndex = 0;
-    this.loadCities();
-  }
-
-  onSearchChanged(): void {
-    this.pageIndex = 0;
-    this.loadCities();
-  }
-
-  onPageChange(page: number) {
-    this.pageIndex = page;
-    this.loadCities();
+    this.load();
   }
 
   onEdit(city: City): void {
