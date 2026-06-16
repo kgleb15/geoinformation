@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Country } from '../../core/models/country.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -8,7 +8,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
-import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseTable } from '../../shared/base-table/base-table';
 import { SearchInput } from '../../shared/search-input/search-input';
@@ -23,11 +22,8 @@ import { SearchInput } from '../../shared/search-input/search-input';
     MatIconButton,
     Paginator,
     Header,
-    MatFormField,
-    MatInput,
     ReactiveFormsModule,
     FormsModule,
-    MatPrefix,
     SearchInput,
   ],
   templateUrl: './countries.html',

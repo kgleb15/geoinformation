@@ -1,5 +1,4 @@
 import { Component, input, output, computed } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
