@@ -7,11 +7,18 @@
         [(ngModel)]="selectedCountry"
         (ngModelChange)="onCountryChange()"
         placeholder="Страны"
-        panelClass="custom-select-panel">
-          <mat-option value="">Все страны</mat-option>
-          @for (country of countries; track country.code) {
-            <mat-option [value]="country.code">{{country.name}}</mat-option>
-          }
+        panelClass="custom-select-panel"
+        (openedChange)="onSelectOpenedChange($event)">
+
+        <cdk-virtual-scroll-viewport
+          [itemSize]="48"
+          [style.height.px]=240
+          (scrolledIndexChange)="onScrollIndexChange($event)">
+
+          <mat-option *cdkVirtualFor="let country of countries; trackBy: trackCountry" [value]="country.code">
+            {{country.name}}
+          </mat-option>
+        </cdk-virtual-scroll-viewport>
       </mat-select>
     </mat-form-field>
 
