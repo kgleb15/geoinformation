@@ -9,7 +9,7 @@ import { City } from '../models/city.model';
 @Injectable({ providedIn: 'root' })
 export class GeoService {
   private http = inject(HttpClient); //
-  private baseUrl = 'http://geodb-free-service.wirefreethought.com/v1/geo';
+  private baseUrl = '/v1/geo';
 
   getCountries(
     limit: number,
@@ -41,5 +41,5 @@ export class GeoService {
     }
 
     return this.http.get<ApiResponseModel<City>>(`${this.baseUrl}/cities`, { params });
-  };
+  }
 }
