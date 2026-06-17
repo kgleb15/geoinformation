@@ -5,10 +5,9 @@ import { ApiResponseModel } from '../models/api-response.model';
 import { Country } from '../models/country.model';
 import { City } from '../models/city.model';
 
-
 @Injectable({ providedIn: 'root' })
 export class GeoService {
-  private http = inject(HttpClient); //
+  private http = inject(HttpClient);
   private baseUrl = '/v1/geo';
 
   getCountries(
@@ -16,7 +15,7 @@ export class GeoService {
     offset: number,
     namePrefix?: string,
   ): Observable<ApiResponseModel<Country>> {
-    let params = new HttpParams().set('limit', limit).set('offset', offset);
+    let params: HttpParams = new HttpParams().set('limit', limit).set('offset', offset);
 
     if (namePrefix) {
       params = params.set('namePrefix', namePrefix);
@@ -31,7 +30,7 @@ export class GeoService {
     countryIds?: string,
     namePrefix?: string,
   ): Observable<ApiResponseModel<City>> {
-    let params = new HttpParams().set('limit', limit).set('offset', offset);
+    let params: HttpParams = new HttpParams().set('limit', limit).set('offset', offset);
 
     if (countryIds) {
       params = params.set('countryIds', countryIds);
