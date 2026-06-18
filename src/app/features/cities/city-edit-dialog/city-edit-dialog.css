@@ -30,16 +30,9 @@ h2 {
 
 .cancel-button {
   color: red;
+  background-color: transparent;
 }
 
 .cancel-button:hover {
   background-color: var(--color-danger-secondary);
-}
-
-.cancel-button:active {
-  background-color: var(--color-danger-secondary-dark);
-}
-
-.cancel-button:focus {
-  background-color: var(--color-danger-secondary-dark);
 }
