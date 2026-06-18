@@ -2,6 +2,7 @@ import { Component, model, output } from '@angular/core';
 import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-search-input',
@@ -14,7 +15,22 @@ export class SearchInput {
   placeholder: string = 'Поиск';
   searchChange = output<void>();
 
+  private searchSubject = new Subject<string>();
+  private destroy$ = new Subject();
+
+  ngOnInit() {
+    this.searchSubject
+      .pipe(debounceTime(300), distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((search) => {
+        this.searchChange.emit();
+      });
+  }
+
   onChange(): void {
-    this.searchChange.emit();
+    this.searchSubject.next(this.value());
+  }
+
+  ngOnDestroy() {
+    this.destroy$.complete();
   }
 }
