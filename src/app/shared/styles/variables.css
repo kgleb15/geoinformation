@@ -6,6 +6,7 @@
 
   --color-nav-blue: #176dc1;
   --color-nav-blue-light: #f6f6ff;
+  --color-danger: red;
   --color-danger-secondary: rgb(255 121 121 / 0.2);
   --color-danger-secondary-dark: rgb(189 0 0 / 0.25);
 }

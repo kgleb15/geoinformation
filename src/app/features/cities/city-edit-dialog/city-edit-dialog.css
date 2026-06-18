@@ -29,7 +29,7 @@ h2 {
 }
 
 .cancel-button {
-  color: red;
+  color: var(--color-danger);
   background-color: transparent;
 }
 
