@@ -1,9 +1,12 @@
-import { ChangeDetectorRef, Directive, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Directive, inject } from '@angular/core';
 import { GeoService } from '../../core/services/geo.service';
 import { Observable } from 'rxjs';
 import { ApiResponseModel } from '../../core/models/api-response.model';
 
-@Directive()
+@Component({
+  selector: 'app-base-table',
+  template: '',
+})
 export abstract class BaseTable<T> {
   protected geoService = inject(GeoService);
   protected cdr = inject(ChangeDetectorRef);
