@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { integerValidator } from '../../../shared/validators/integerValidator';
-import { dateNotAfterTodayValidator } from '../../../shared/validators/dateNotAfterTodayValidator';
+import { integerValidator } from '../../../shared/validators/number-validators';
+import { dateNotAfterTodayValidator } from '../../../shared/validators/date-validators';
 import { MatError, MatFormField, MatInput, MatLabel, MatSuffix } from '@angular/material/input';
 import {
   FormBuilder,
