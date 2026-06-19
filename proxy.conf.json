@@ -1,6 +1,6 @@
 {
   "/v1": {
-    "target": "http://geodb-free-service.wirefreethought.com",
+    "target": "https://geodb-free-service.wirefreethought.com",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
