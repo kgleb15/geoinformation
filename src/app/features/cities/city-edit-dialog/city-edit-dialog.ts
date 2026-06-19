@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { integerValidator } from '../../../shared/validators/integerValidator';
+import { dateNotAfterTodayValidator } from '../../../shared/validators/dateNotAfterTodayValidator';
 import { MatError, MatFormField, MatInput, MatLabel, MatSuffix } from '@angular/material/input';
 import {
   FormBuilder,
@@ -44,7 +45,7 @@ export class CityEditDialog {
   form: FormGroup = this.fb.group({
     region: [this.data.region, [Validators.required]],
     population: [this.data.population, [Validators.required, Validators.min(1), integerValidator()]],
-    foundingDate: [null],
+    foundingDate: [null, [dateNotAfterTodayValidator()]],
     longitude: [
       this.data.longitude,
       [Validators.required, Validators.min(-180), Validators.max(180)],

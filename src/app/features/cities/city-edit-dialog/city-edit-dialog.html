@@ -32,6 +32,9 @@
         <input matInput [matDatepicker]="picker" formControlName="foundingDate"/>
         <mat-datepicker-toggle matSuffix [for]="picker"/>
         <mat-datepicker #picker/>
+        @if (form.get('foundingDate')?.hasError('dateAfterToday')) {
+          <mat-error>Дата не может быть после сегодняшнего дня</mat-error>
+        }
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Долгота</mat-label>
