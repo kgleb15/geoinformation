@@ -23,6 +23,8 @@
           <mat-error>Обязательное поле</mat-error>
         } @else if (form.get('population')?.hasError('min')) {
           <mat-error>Население должно быть > 0</mat-error>
+        } @else if (form.get('population')?.hasError('integer')) {
+          <mat-error>Население должно быть целым числом</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
 import { MatButton, MatIconButton } from '@angular/material/button';
+import { integerValidator } from '../../../shared/validators/integerValidator';
 import { MatError, MatFormField, MatInput, MatLabel, MatSuffix } from '@angular/material/input';
 import {
   FormBuilder,
@@ -42,7 +43,7 @@ export class CityEditDialog {
 
   form: FormGroup = this.fb.group({
     region: [this.data.region, [Validators.required]],
-    population: [this.data.population, [Validators.required, Validators.min(1)]],
+    population: [this.data.population, [Validators.required, Validators.min(1), integerValidator()]],
     foundingDate: [null],
     longitude: [
       this.data.longitude,
