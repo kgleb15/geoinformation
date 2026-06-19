@@ -2,8 +2,14 @@ import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatFormField, MatInput, MatLabel, MatSuffix } from '@angular/material/input';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatError, MatFormField, MatInput, MatLabel, MatSuffix } from '@angular/material/input';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -24,6 +30,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepicker,
     MatNativeDateModule,
     MatSuffix,
+    MatError,
   ],
   templateUrl: './city-edit-dialog.html',
   styleUrl: './city-edit-dialog.css',
@@ -34,11 +41,14 @@ export class CityEditDialog {
   private fb = inject(FormBuilder);
 
   form: FormGroup = this.fb.group({
-    region: [this.data.region],
-    population: [this.data.population],
+    region: [this.data.region, [Validators.required]],
+    population: [this.data.population, [Validators.required, Validators.min(1)]],
     foundingDate: [null],
-    longitude: [this.data.longitude],
-    latitude: [this.data.latitude],
+    longitude: [
+      this.data.longitude,
+      [Validators.required, Validators.min(-180), Validators.max(180)],
+    ],
+    latitude: [this.data.latitude, [Validators.required, Validators.min(-90), Validators.max(90)]],
   });
 
   cancel(): void {
@@ -46,6 +56,9 @@ export class CityEditDialog {
   }
 
   save(): void {
-    //
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
   }
 }
