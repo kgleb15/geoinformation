@@ -11,14 +11,14 @@ h2 {
 
 .full-width {
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: 15px;
 }
 
 .two-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 22px;
-  row-gap: 8px;
+  row-gap: 15px;
 }
 
 .actions {
