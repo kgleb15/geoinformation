@@ -24,7 +24,7 @@
         } @else if (form.get('population')?.hasError('min')) {
           <mat-error>Население должно быть > 0</mat-error>
         } @else if (form.get('population')?.hasError('integer')) {
-          <mat-error>Население должно быть целым числом</mat-error>
+          <mat-error>Укажите целое число</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -33,7 +33,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"/>
         <mat-datepicker #picker/>
         @if (form.get('foundingDate')?.hasError('dateAfterToday')) {
-          <mat-error>Дата не может быть после сегодняшнего дня</mat-error>
+          <mat-error>Максимальная дата - сегодня</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -45,7 +45,7 @@
         @if (form.get('longitude')?.hasError('required')) {
           <mat-error>Обязательное поле</mat-error>
         } @else if (form.get('longitude')?.hasError('min') || form.get('longitude')?.hasError('max')) {
-        <mat-error>Долгота должна быть от -180 до 180</mat-error>
+        <mat-error>Должна быть от -180 до 180</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -57,7 +57,7 @@
         @if (form.get('latitude')?.hasError('required')) {
           <mat-error>Обязательное поле</mat-error>
         } @else if (form.get('latitude')?.hasError('min') || form.get('latitude')?.hasError('max')) {
-          <mat-error>Долгота должна быть от -90 до 90</mat-error>
+          <mat-error>Должна быть от -90 до 90</mat-error>
         }
       </mat-form-field>
     </div>
