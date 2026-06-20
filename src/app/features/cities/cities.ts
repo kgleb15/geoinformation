@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { Country } from '../../core/models/country.model';
 import { FormsModule } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
@@ -54,13 +54,14 @@ import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Cities extends BaseTable<City> implements OnInit {
-  countries: Country[] = [];
   selectedCountry = '';
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
 
-  countriesTotalCount = 0;
+  countries = signal<Country[]>([]);
+  countriesTotalCount = signal(0);
+  isLoadingCountries = signal(false);
+
   countriesPageIndex = 0;
-  isLoadingCountries = false;
   countriesPageSize = 10;
 
   private route = inject(ActivatedRoute);
@@ -76,33 +77,31 @@ export class Cities extends BaseTable<City> implements OnInit {
   }
 
   loadCountries(): void {
-    if (this.isLoadingCountries) {
+    if (this.isLoadingCountries()) {
       return;
     }
 
-    this.isLoadingCountries = true;
+    this.isLoadingCountries.set(true);
     const offset = this.countriesPageSize * this.countriesPageIndex;
 
     this.geoService.getCountries(this.countriesPageSize, offset).subscribe({
       next: (response) => {
         if (this.countriesPageIndex === 0) {
-          this.countries = response.data;
+          this.countries.set(response.data);
         } else {
-          this.countries = [...this.countries, ...response.data];
+          this.countries.update(prev => [...prev, ...response.data]);
         }
-        this.countriesTotalCount = response.metadata.totalCount || this.countries.length;
-        this.isLoadingCountries = false;
-        this.cdr.markForCheck();
+        this.countriesTotalCount.set(response.metadata.totalCount || this.countries().length);
+        this.isLoadingCountries.set(false);
       },
       error: () => {
-        this.isLoadingCountries = false;
-        this.cdr.markForCheck();
+        this.isLoadingCountries.set(false);
       },
     });
   }
 
   loadMoreCountries(): void {
-    if (this.countries.length < this.countriesTotalCount) {
+    if (this.countries().length < this.countriesTotalCount()) {
       this.countriesPageIndex++;
       this.loadCountries();
     }
@@ -138,9 +137,9 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   onScrollIndexChange(index: number): void {
     if (
-      index >= this.countries.length - 5 &&
-      this.countries.length < this.countriesTotalCount &&
-      !this.isLoadingCountries
+      index >= this.countries().length - 5 &&
+      this.countries().length < this.countriesTotalCount() &&
+      !this.isLoadingCountries()
     ) {
       this.loadMoreCountries();
     }

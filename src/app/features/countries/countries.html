@@ -5,12 +5,12 @@
     <app-search-input [(value)]="searchName" (searchChange)="onSearchChanged()"/>
   </div>
 
-  @if (isLoading) {
+  @if (isLoading()) {
     <div class="spinner-container">
       <mat-spinner diameter="60"/>
     </div>
   } @else {
-    <table mat-table [dataSource]="items">
+    <table mat-table [dataSource]="items()">
       <ng-container matColumnDef="wikiDataId">
         <th mat-header-cell *matHeaderCellDef>ID страны</th>
         <td mat-cell *matCellDef="let country">{{country.wikiDataId}}</td>
@@ -46,10 +46,10 @@
   }
 
   <app-paginator
-    [class.hidden]="isLoading"
+    [class.hidden]="isLoading()"
     [pageIndex]="pageIndex"
     [pageSize]="pageSize"
-    [totalCount]="totalCount"
+    [totalCount]="totalCount()"
     (pageChange)="onPageChange($event)"
     class="pagination-left"
   />

@@ -15,7 +15,7 @@
           [style.height.px]=240
           (scrolledIndexChange)="onScrollIndexChange($event)">
 
-          <mat-option *cdkVirtualFor="let country of countries; trackBy: trackCountry" [value]="country.code">
+          <mat-option *cdkVirtualFor="let country of countries(); trackBy: trackCountry" [value]="country.code">
             {{country.name}}
           </mat-option>
         </cdk-virtual-scroll-viewport>
@@ -25,12 +25,12 @@
     <app-search-input [(value)]="searchName" (searchChange)="onSearchChanged()"/>
   </div>
 
-  @if (isLoading) {
+  @if (isLoading()) {
     <div class="spinner-container">
       <mat-spinner diameter="60"/>
     </div>
   } @else {
-    <table mat-table [dataSource]="items">
+    <table mat-table [dataSource]="items()">
 
       <ng-container matColumnDef="country">
         <th mat-header-cell *matHeaderCellDef>Страна</th>
@@ -70,10 +70,10 @@
   }
 
   <app-paginator
-    [class.hidden]="isLoading"
+    [class.hidden]="isLoading()"
     [pageIndex]="pageIndex"
     [pageSize]="pageSize"
-    [totalCount]="totalCount"
+    [totalCount]="totalCount()"
     (pageChange)="onPageChange($event)"
     class="pagination-left"
   />
