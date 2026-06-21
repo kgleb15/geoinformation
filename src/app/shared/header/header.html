@@ -1,7 +1,7 @@
 <div class = "header">
   <div class="top-row">
     <h1>ГЕОИНФОРМАЦИЯ</h1>
-    <mat-radio-group [(ngModel)]="selectedLang" class= "lang-switch">
+    <mat-radio-group [(ngModel)]="selectedLang" (ngModelChange)="onLangChange($event)" class= "lang-switch">
       <mat-radio-button value="ru" class="lang-option">RU</mat-radio-button>
       <mat-radio-button value="en" class="lang-option">EN</mat-radio-button>
     </mat-radio-group>
