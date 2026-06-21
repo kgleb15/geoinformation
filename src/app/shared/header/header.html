@@ -1,6 +1,6 @@
 <div class = "header">
   <div class="top-row">
-    <h1>ГЕОИНФОРМАЦИЯ</h1>
+    <h1>{{ 'header.title' | translate }}</h1>
     <mat-radio-group [(ngModel)]="selectedLang" (ngModelChange)="onLangChange($event)" class= "lang-switch">
       <mat-radio-button value="ru" class="lang-option">RU</mat-radio-button>
       <mat-radio-button value="en" class="lang-option">EN</mat-radio-button>
@@ -9,7 +9,7 @@
 
 
   <nav class="tabs">
-    <a routerLink="/countries" routerLinkActive="active" class="tab">Страны</a>
-    <a routerLink="/cities" routerLinkActive="active" class="tab">Города</a>
+    <a routerLink="/countries" routerLinkActive="active" class="tab">{{ 'nav.countries' | translate }}</a>
+    <a routerLink="/cities" routerLinkActive="active" class="tab">{{ 'nav.cities' | translate }}</a>
   </nav>
 </div>
