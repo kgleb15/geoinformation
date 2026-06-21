@@ -1,7 +1,8 @@
 <mat-form-field appearance="outline" class="search-field">
   <mat-icon matPrefix>search</mat-icon>
   <input matInput
-         [(ngModel)]="value"
-         (ngModelChange)="onChange()"
+         [value]="cva.value$()"
+         (input)="onChange($event)"
+         (blur)="cva.markAsTouched()"
          [placeholder]="placeholder"/>
 </mat-form-field>

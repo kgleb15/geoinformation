@@ -2,7 +2,7 @@
 <div class="container">
 
   <div class="filters">
-    <app-search-input [(value)]="searchName" (searchChange)="onSearchChanged()"/>
+    <app-search-input [(value)]="searchName" (valueChange)="onSearchChanged()"/>
   </div>
 
   @if (isLoading()) {

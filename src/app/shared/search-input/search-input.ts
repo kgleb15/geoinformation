@@ -1,19 +1,27 @@
-import { Component, model, output } from '@angular/core';
+import { Component, inject, model, OnDestroy, OnInit, output } from '@angular/core';
 import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxControlValueAccessor } from 'ngxtension/control-value-accessor';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-search-input',
   imports: [MatFormField, MatIcon, MatInput, MatPrefix, ReactiveFormsModule, FormsModule],
+  hostDirectives: [
+    {
+      directive: NgxControlValueAccessor,
+      inputs: ['value'],
+      outputs: ['valueChange'],
+    },
+  ],
   templateUrl: './search-input.html',
   styleUrl: './search-input.css',
 })
 export class SearchInput {
-  value = model<string>('');
+  cva = inject<NgxControlValueAccessor<string>>(NgxControlValueAccessor);
+
   placeholder: string = 'Поиск';
-  searchChange = output<void>();
 
   private searchSubject = new Subject<string>();
   private destroy$ = new Subject();
@@ -22,12 +30,12 @@ export class SearchInput {
     this.searchSubject
       .pipe(debounceTime(300), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe((search) => {
-        this.searchChange.emit();
+        this.cva.value = search;
       });
   }
 
-  onChange(): void {
-    this.searchSubject.next(this.value());
+  onChange(event: Event): void {
+    this.searchSubject.next((event.target as HTMLInputElement).value);
   }
 
   ngOnDestroy() {
