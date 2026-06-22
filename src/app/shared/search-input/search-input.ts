@@ -1,13 +1,22 @@
-import { Component, inject, model, OnDestroy, OnInit, output } from '@angular/core';
+import { Component, effect, inject, model, OnDestroy, OnInit, output } from '@angular/core';
 import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxControlValueAccessor } from 'ngxtension/control-value-accessor';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-input',
-  imports: [MatFormField, MatIcon, MatInput, MatPrefix, ReactiveFormsModule, FormsModule],
+  imports: [
+    MatFormField,
+    MatIcon,
+    MatInput,
+    MatPrefix,
+    ReactiveFormsModule,
+    FormsModule,
+    TranslatePipe,
+  ],
   hostDirectives: [
     {
       directive: NgxControlValueAccessor,
@@ -20,8 +29,6 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 })
 export class SearchInput {
   cva = inject<NgxControlValueAccessor<string>>(NgxControlValueAccessor);
-
-  placeholder: string = 'Поиск';
 
   private searchSubject = new Subject<string>();
   private destroy$ = new Subject();

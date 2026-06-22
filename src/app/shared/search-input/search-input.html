@@ -4,5 +4,5 @@
          [value]="cva.value$()"
          (input)="onChange($event)"
          (blur)="cva.markAsTouched()"
-         [placeholder]="placeholder"/>
+         [placeholder]="'search.placeholder' | translate"/>
 </mat-form-field>
