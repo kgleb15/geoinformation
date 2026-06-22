@@ -16,6 +16,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { form } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-city-edit-dialog',
@@ -50,7 +51,10 @@ export class CityEditDialog {
       this.data.population,
       [Validators.required, Validators.min(1), integerValidator()],
     ],
-    foundingDate: [null, [dateNotAfterTodayValidator()]],
+    foundingDate: [
+      this.data.foundingDate ? new Date(this.data.foundingDate) : null,
+      [dateNotAfterTodayValidator()],
+    ],
     longitude: [
       this.data.longitude,
       [Validators.required, Validators.min(-180), Validators.max(180)],
@@ -67,5 +71,20 @@ export class CityEditDialog {
       this.form.markAllAsTouched();
       return;
     }
+
+    const formValue = this.form.value;
+
+    const updatedCity: City = {
+      ...this.data,
+      region: formValue.region,
+      population: formValue.population,
+      longitude: formValue.longitude,
+      latitude: formValue.latitude,
+      foundingDate: formValue.foundingDate ? (formValue.foundingDate as Date).toISOString() : null,
+    };
+
+    localStorage.setItem(`edited_city_${this.data.id}`, JSON.stringify(updatedCity));
+
+    this.dialogRef.close(updatedCity);
   }
 }

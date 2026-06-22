@@ -21,6 +21,7 @@ import { BaseTable } from '../../shared/base-table/base-table';
 import { SearchInput } from '../../shared/search-input/search-input';
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TranslatePipe } from '@ngx-translate/core';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-cities',
@@ -110,7 +111,15 @@ export class Cities extends BaseTable<City> implements OnInit {
   }
 
   protected fetchData(limit: number, offset: number, search?: string) {
-    return this.geoService.getCities(limit, offset, this.selectedCountry || undefined, search);
+    return this.geoService.getCities(limit, offset, this.selectedCountry || undefined, search).pipe(
+      map((response) => {
+        const mergedData = response.data.map(city => {
+          const saved = localStorage.getItem(`edited_city_${city.id}`);
+          return saved ? (JSON.parse(saved) as City) : city;
+        });
+        return {...response, data: mergedData};
+      })
+    );
   }
 
   onCountryChange(): void {
@@ -119,7 +128,15 @@ export class Cities extends BaseTable<City> implements OnInit {
   }
 
   onEdit(city: City): void {
-    this.dialog.open(CityEditDialog, { data: city });
+    const dialogRef = this.dialog.open(CityEditDialog, {data: city});
+
+    dialogRef.afterClosed().subscribe((updatedCity:City | undefined) => {
+      if(updatedCity) {
+        this.items.update((current) =>
+          current.map((item) => (item.id === updatedCity.id ? updatedCity : item))
+        );
+      }
+    });
   }
 
   onView(city: City): void {

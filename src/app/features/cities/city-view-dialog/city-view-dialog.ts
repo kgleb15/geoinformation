@@ -15,6 +15,13 @@ export class CityViewDialog {
   private dialogRef = inject(MatDialogRef<CityViewDialog>);
   data: City = inject(MAT_DIALOG_DATA);
 
+  ngOnInit(): void {
+    const saved = localStorage.getItem(`edited_city_${this.data.id}`);
+    if (saved) {
+      this.data = JSON.parse(saved) as City;
+    }
+  }
+
   close(): void {
     this.dialogRef.close();
   }

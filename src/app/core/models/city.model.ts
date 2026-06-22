@@ -8,4 +8,5 @@ export interface City {
   latitude: number;
   longitude: number;
   population: number;
+  foundingDate?: string | null;
 }
