@@ -6,7 +6,7 @@
       <mat-select
         [(ngModel)]="selectedCountry"
         (ngModelChange)="onCountryChange()"
-        placeholder="'cities.filterPlaceholder' | translate"
+        [placeholder]="'cities.filterPlaceholder' | translate"
         panelClass="custom-select-panel"
         (openedChange)="onSelectOpenedChange($event)">
 
