@@ -5,5 +5,51 @@
   "nav": {
     "countries": "Countries",
     "cities": "Cities"
+  },
+  "search": {
+    "placeholder": "Search"
+  },
+  "countries": {
+    "columns": {
+      "id": "Country ID",
+      "name": "Name",
+      "code": "Country Code",
+      "currencies": "Currency Codes"
+    }
+  },
+  "cities": {
+    "filterPlaceholder": "Countries",
+    "columns": {
+      "country": "Country",
+      "name": "Name",
+      "region": "Region",
+      "population": "Population"
+    }
+  },
+  "cityView": {
+    "country": "Country",
+    "region": "Region",
+    "population": "Population",
+    "foundingDate": "Founding date",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "close": "Close"
+  },
+  "cityEdit": {
+    "region": "Region",
+    "population": "Population",
+    "foundingDate": "Founding date",
+    "longitude": "Longitude",
+    "latitude": "Latitude",
+    "cancel": "Cancel",
+    "save": "Save",
+    "errors": {
+      "required": "Required field",
+      "populationMin": "Population must be > 0",
+      "populationInteger": "Enter an integer",
+      "dateAfterToday": "Maximum date is today",
+      "longitudeRange": "Must be between -180 and 180",
+      "latitudeRange": "Must be between -90 and 90"
+    }
   }
 }

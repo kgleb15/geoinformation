@@ -3,69 +3,69 @@
 
   <form [formGroup]="form">
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Регион</mat-label>
+      <mat-label>{{ 'cityEdit.region' | translate }}</mat-label>
       <input matInput formControlName="region"/>
       <button matSuffix matIconButton aria-label="Clear" (click)="form.get('region')?.reset()">
         <mat-icon>close</mat-icon>
       </button>
       @if (form.get('region')?.hasError('required')) {
-        <mat-error>Обязательное поле</mat-error>
+        <mat-error>{{ 'cityEdit.errors.required' | translate }}</mat-error>
       }
     </mat-form-field>
     <div class="two-columns">
       <mat-form-field appearance="outline">
-        <mat-label>Население</mat-label>
+        <mat-label>{{ 'cityEdit.population' | translate }}</mat-label>
         <input matInput formControlName="population"/>
         <button matSuffix matIconButton aria-label="Clear" (click)="form.get('population')?.reset()">
           <mat-icon>close</mat-icon>
         </button>
         @if (form.get('population')?.hasError('required')) {
-          <mat-error>Обязательное поле</mat-error>
+          <mat-error>{{ 'cityEdit.errors.required' | translate }}</mat-error>
         } @else if (form.get('population')?.hasError('min')) {
-          <mat-error>Население должно быть > 0</mat-error>
+          <mat-error>{{ 'cityEdit.errors.populationMin' | translate }}</mat-error>
         } @else if (form.get('population')?.hasError('integer')) {
-          <mat-error>Укажите целое число</mat-error>
+          <mat-error>{{ 'cityEdit.errors.populationInteger' | translate }}</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Дата основания</mat-label>
+        <mat-label>{{ 'cityEdit.foundingDate' | translate }}</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="foundingDate"/>
         <mat-datepicker-toggle matSuffix [for]="picker"/>
         <mat-datepicker #picker/>
         @if (form.get('foundingDate')?.hasError('dateAfterToday')) {
-          <mat-error>Максимальная дата - сегодня</mat-error>
+          <mat-error>{{ 'cityEdit.errors.dateAfterToday' | translate }}</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Долгота</mat-label>
+        <mat-label>{{ 'cityEdit.longitude' | translate }}</mat-label>
         <input matInput formControlName="longitude" type="number"/>
         <button matSuffix matIconButton aria-label="Clear" (click)="form.get('longitude')?.reset()">
           <mat-icon>close</mat-icon>
         </button>
         @if (form.get('longitude')?.hasError('required')) {
-          <mat-error>Обязательное поле</mat-error>
+          <mat-error>{{ 'cityEdit.errors.required' | translate }}</mat-error>
         } @else if (form.get('longitude')?.hasError('min') || form.get('longitude')?.hasError('max')) {
-        <mat-error>Должна быть от -180 до 180</mat-error>
+        <mat-error>{{ 'cityEdit.errors.longitudeRange' | translate }}</mat-error>
         }
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Широта</mat-label>
+        <mat-label>{{ 'cityEdit.latitude' | translate }}</mat-label>
         <input matInput formControlName="latitude" type="number"/>
         <button matSuffix matIconButton aria-label="Clear" (click)="form.get('latitude')?.reset()">
           <mat-icon>close</mat-icon>
         </button>
         @if (form.get('latitude')?.hasError('required')) {
-          <mat-error>Обязательное поле</mat-error>
+          <mat-error>{{ 'cityEdit.errors.required' | translate }}</mat-error>
         } @else if (form.get('latitude')?.hasError('min') || form.get('latitude')?.hasError('max')) {
-          <mat-error>Должна быть от -90 до 90</mat-error>
+          <mat-error>{{ 'cityEdit.errors.latitudeRange' | translate }}</mat-error>
         }
       </mat-form-field>
     </div>
   </form>
 
   <div class="actions">
-    <button mat-flat-button class="cancel-button" (click)="cancel()">Отменить</button>
-    <button matButton="filled" color="primary" (click)="save()">Сохранить</button>
+    <button mat-flat-button class="cancel-button" (click)="cancel()">{{ 'cityEdit.cancel' | translate }}</button>
+    <button matButton="filled" color="primary" (click)="save()">{{ 'cityEdit.save' | translate }}</button>
   </div>
 </div>
 

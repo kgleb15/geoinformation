@@ -5,5 +5,51 @@
   "nav": {
     "countries": "Страны",
     "cities": "Города"
+  },
+  "search": {
+    "placeholder": "Поиск"
+  },
+  "countries": {
+    "columns": {
+      "id": "ID страны",
+      "name": "Наименование",
+      "code": "Код страны",
+      "currencies": "Коды валют"
+    }
+  },
+  "cities": {
+    "filterPlaceholder": "Страны",
+    "columns": {
+      "country": "Страна",
+      "name": "Наименование",
+      "region": "Регион",
+      "population": "Население"
+    }
+  },
+  "cityView": {
+    "country": "Страна",
+    "region": "Регион",
+    "population": "Население",
+    "foundingDate": "Дата основания",
+    "longitude": "Долгота",
+    "latitude": "Широта",
+    "close": "Закрыть"
+  },
+  "cityEdit": {
+    "region": "Регион",
+    "population": "Население",
+    "foundingDate": "Дата основания",
+    "longitude": "Долгота",
+    "latitude": "Широта",
+    "cancel": "Отменить",
+    "save": "Сохранить",
+    "errors": {
+      "required": "Обязательное поле",
+      "populationMin": "Население должно быть > 0",
+      "populationInteger": "Укажите целое число",
+      "dateAfterToday": "Максимальная дата - сегодня",
+      "longitudeRange": "Должна быть от -180 до 180",
+      "latitudeRange": "Должна быть от -90 до 90"
+    }
   }
 }

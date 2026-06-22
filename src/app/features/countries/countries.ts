@@ -11,6 +11,7 @@ import { Header } from '../../shared/header/header';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseTable } from '../../shared/base-table/base-table';
 import { SearchInput } from '../../shared/search-input/search-input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-countries',
@@ -25,6 +26,7 @@ import { SearchInput } from '../../shared/search-input/search-input';
     ReactiveFormsModule,
     FormsModule,
     SearchInput,
+    TranslatePipe,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',

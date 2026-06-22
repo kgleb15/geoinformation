@@ -3,32 +3,32 @@
 
   <div class="info-grid">
     <div class="info-item">
-      <div class="label">Страна</div>
+      <div class="label">{{ 'cityView.country' | translate }}</div>
       <div class="value">{{data.country}}</div>
     </div>
     <div class="info-item">
-      <div class="label">Регион</div>
+      <div class="label">{{ 'cityView.region' | translate }}</div>
       <div class="value">{{data.region}}</div>
     </div>
     <div class="info-item">
-      <div class="label">Население</div>
+      <div class="label">{{ 'cityView.population' | translate }}</div>
       <div class="value">{{data.population | number}}</div>
     </div>
     <div class="info-item">
-      <div class="label">Дата основания</div>
+      <div class="label">{{ 'cityView.foundingDate' | translate }}</div>
       <div class="value">---</div>
     </div>
     <div class="info-item">
-      <div class="label">Долгота</div>
+      <div class="label">{{ 'cityView.longitude' | translate }}</div>
       <div class="value">{{data.longitude}}</div>
     </div>
     <div class="info-item">
-      <div class="label">Широта</div>
+      <div class="label">{{ 'cityView.latitude' | translate }}</div>
       <div class="value">{{data.latitude}}</div>
     </div>
   </div>
 
   <div class="actions">
-    <button matButton="outlined" class="gray-outline" (click)="close()">Закрыть</button>
+    <button matButton="outlined" class="gray-outline" (click)="close()">{{ 'cityView.close' | translate }}</button>
   </div>
 </div>

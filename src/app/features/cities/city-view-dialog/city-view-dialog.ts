@@ -3,10 +3,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
 import { DecimalPipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-city-view-dialog',
-  imports: [DecimalPipe, MatButton],
+  imports: [DecimalPipe, MatButton, TranslatePipe],
   templateUrl: './city-view-dialog.html',
   styleUrl: './city-view-dialog.css',
 })

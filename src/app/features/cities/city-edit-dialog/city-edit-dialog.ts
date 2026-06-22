@@ -15,6 +15,7 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-city-edit-dialog',
@@ -33,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatSuffix,
     MatError,
+    TranslatePipe,
   ],
   templateUrl: './city-edit-dialog.html',
   styleUrl: './city-edit-dialog.css',
@@ -44,7 +46,10 @@ export class CityEditDialog {
 
   form: FormGroup = this.fb.group({
     region: [this.data.region, [Validators.required]],
-    population: [this.data.population, [Validators.required, Validators.min(1), integerValidator()]],
+    population: [
+      this.data.population,
+      [Validators.required, Validators.min(1), integerValidator()],
+    ],
     foundingDate: [null, [dateNotAfterTodayValidator()]],
     longitude: [
       this.data.longitude,

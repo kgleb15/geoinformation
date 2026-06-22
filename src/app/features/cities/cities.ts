@@ -20,6 +20,7 @@ import { CityEditDialog } from './city-edit-dialog/city-edit-dialog';
 import { BaseTable } from '../../shared/base-table/base-table';
 import { SearchInput } from '../../shared/search-input/search-input';
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cities',
@@ -48,6 +49,7 @@ import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } 
     CdkVirtualScrollViewport,
     CdkFixedSizeVirtualScroll,
     CdkVirtualForOf,
+    TranslatePipe,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -89,7 +91,7 @@ export class Cities extends BaseTable<City> implements OnInit {
         if (this.countriesPageIndex === 0) {
           this.countries.set(response.data);
         } else {
-          this.countries.update(prev => [...prev, ...response.data]);
+          this.countries.update((prev) => [...prev, ...response.data]);
         }
         this.countriesTotalCount.set(response.metadata.totalCount || this.countries().length);
         this.isLoadingCountries.set(false);
