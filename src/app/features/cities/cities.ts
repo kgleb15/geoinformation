@@ -176,4 +176,8 @@ export class Cities extends BaseTable<City> implements OnInit {
   protected override mapSortField(column:string):string{
     return column==='country' ? 'countryCode' : column;
   }
+
+  isCityEdited(city: City): boolean {
+    return localStorage.getItem('edited_city_' + city.id) !== null;
+  }
 }
