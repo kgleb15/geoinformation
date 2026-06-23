@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { City } from '../../../core/models/city.model';
-import { DecimalPipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-city-view-dialog',
-  imports: [DecimalPipe, MatButton, TranslatePipe],
+  imports: [DecimalPipe, MatButton, TranslatePipe, DatePipe],
   templateUrl: './city-view-dialog.html',
   styleUrl: './city-view-dialog.css',
 })
