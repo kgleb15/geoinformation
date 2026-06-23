@@ -14,11 +14,15 @@ export class GeoService {
     limit: number,
     offset: number,
     namePrefix?: string,
+    sort?: string,
   ): Observable<ApiResponseModel<Country>> {
     let params: HttpParams = new HttpParams().set('limit', limit).set('offset', offset);
 
     if (namePrefix) {
       params = params.set('namePrefix', namePrefix);
+    }
+    if (sort) {
+      params = params.set('sort', sort);
     }
 
     return this.http.get<ApiResponseModel<Country>>(`${this.baseUrl}/countries`, { params });
@@ -29,6 +33,7 @@ export class GeoService {
     offset: number,
     countryIds?: string,
     namePrefix?: string,
+    sort?: string,
   ): Observable<ApiResponseModel<City>> {
     let params: HttpParams = new HttpParams().set('limit', limit).set('offset', offset);
 
@@ -37,6 +42,9 @@ export class GeoService {
     }
     if (namePrefix) {
       params = params.set('namePrefix', namePrefix);
+    }
+    if (sort) {
+      params = params.set('sort', sort);
     }
 
     return this.http.get<ApiResponseModel<City>>(`${this.baseUrl}/cities`, { params });
