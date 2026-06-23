@@ -10,7 +10,7 @@
       <mat-spinner diameter="60"/>
     </div>
   } @else {
-    <table mat-table [dataSource]="items()">
+    <table mat-table [dataSource]="items()" matSort (matSortChange)="onSortChanged($event)">
       <ng-container matColumnDef="wikiDataId">
         <th mat-header-cell *matHeaderCellDef>{{ 'countries.columns.id' | translate }}</th>
         <td mat-cell *matCellDef="let country">{{country.wikiDataId}}</td>
@@ -26,12 +26,12 @@
       </ng-container>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ 'countries.columns.name' | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'countries.columns.name' | translate }}</th>
         <td mat-cell *matCellDef="let country">{{ country.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef>{{ 'countries.columns.code' | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'countries.columns.code' | translate }}</th>
         <td mat-cell *matCellDef="let country">{{ country.code }}</td>
       </ng-container>
 

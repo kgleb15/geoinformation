@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Directive, inject, signal } from '@angula
 import { GeoService } from '../../core/services/geo.service';
 import { Observable } from 'rxjs';
 import { ApiResponseModel } from '../../core/models/api-response.model';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-base-table',
@@ -18,14 +19,18 @@ export abstract class BaseTable<T> {
   pageIndex = 0;
   searchName = '';
 
+  sortField = signal<string>('');
+  sortDirection = signal<'asc' | 'desc' | ''>('');
+
   abstract ngOnInit(): void;
-  protected abstract fetchData(limit: number, offset: number, search?: string): Observable<ApiResponseModel<T>>;
+  protected abstract fetchData(limit: number, offset: number, search?: string, sort?: string): Observable<ApiResponseModel<T>>;
 
   load(): void {
     this.isLoading.set(true);
     const offset = this.pageIndex * this.pageSize;
+    const sort = this.buildSortParam();
 
-      this.fetchData(this.pageSize, offset, this.searchName || undefined).subscribe({
+      this.fetchData(this.pageSize, offset, this.searchName || undefined, sort || undefined).subscribe({
         next: (response) => {
           this.items.set(response.data);
           this.totalCount.set(response.metadata.totalCount);
@@ -45,5 +50,24 @@ export abstract class BaseTable<T> {
   onPageChange(page: number) {
     this.pageIndex = page;
     this.load();
+  }
+
+  onSortChanged(sort : Sort): void {
+    this.sortField.set(sort.direction ? this.mapSortField(sort.active) : '');
+    this.sortDirection.set(sort.direction as 'asc' | 'desc' | '');
+    this.pageIndex = 0;
+    this.load();
+  }
+
+  protected mapSortField(column: string) : string {
+    return column;
+  }
+
+  private buildSortParam(): string {
+    const field = this.sortField();
+    if (!field) {
+      return '';
+    }
+    return this.sortDirection() === 'desc' ? `-${field}` : `+${field}`;
   }
 }

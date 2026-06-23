@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseTable } from '../../shared/base-table/base-table';
 import { SearchInput } from '../../shared/search-input/search-input';
 import { TranslatePipe } from '@ngx-translate/core';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 
 @Component({
   selector: 'app-countries',
@@ -27,6 +28,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     FormsModule,
     SearchInput,
     TranslatePipe,
+    MatSort,
+    MatSortHeader,
   ],
   templateUrl: './countries.html',
   styleUrl: './countries.css',
@@ -40,8 +43,8 @@ export class Countries extends BaseTable<Country> implements OnInit {
     this.load();
   }
 
-  protected fetchData(limit: number, offset: number, search?: string) {
-    return this.geoService.getCountries(limit, offset, search);
+  protected fetchData(limit: number, offset: number, search?: string, sort?: string) {
+    return this.geoService.getCountries(limit, offset, search, sort);
   }
 
   goToCities(countryCode: string): void {
