@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { TranslatedPaginatorIntl } from './core/i18n/paginator-i18n';
 
 import { routes } from './app.routes';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -20,6 +22,7 @@ export const appConfig: ApplicationConfig = {
       }),
       lang: 'ru',
       fallbackLang: 'ru',
-    })
+    }),
+    { provide: MatPaginatorIntl, useClass: TranslatedPaginatorIntl },
   ],
 };

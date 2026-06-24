@@ -51,5 +51,13 @@
       "longitudeRange": "Must be between -180 and 180",
       "latitudeRange": "Must be between -90 and 90"
     }
+  },
+  "paginator": {
+    "itemsPerPage": "Items per page:",
+    "nextPage": "Next page",
+    "previousPage": "Previous page",
+    "firstPage": "First page",
+    "lastPage": "Last page",
+    "of": "of"
   }
 }
