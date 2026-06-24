@@ -4,8 +4,10 @@
   --color-border-light: #dddddd;
   --color-border-dark: #333333;
 
-  --color-nav-blue: #176dc1;
+  --color-nav-blue_dark: #176dc1;
   --color-nav-blue-light: #f6f6ff;
+  --color-nav-blue: #E0ECFFFF;
+
   --color-danger: red;
   --color-danger-secondary: rgb(255 121 121 / 0.2);
   --color-danger-secondary-dark: rgb(189 0 0 / 0.25);
