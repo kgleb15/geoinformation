@@ -23,6 +23,7 @@ import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } 
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cities',
@@ -45,7 +46,6 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
     DecimalPipe,
     MatHeaderCellDef,
     MatIconButton,
-    Paginator,
     Header,
     SearchInput,
     CdkVirtualScrollViewport,
@@ -54,6 +54,7 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
     TranslatePipe,
     MatSort,
     MatSortHeader,
+    MatPaginator,
   ],
   templateUrl: './cities.html',
   styleUrl: './cities.css',
@@ -128,7 +129,7 @@ export class Cities extends BaseTable<City> implements OnInit {
   }
 
   onCountryChange(): void {
-    this.pageIndex = 0;
+    this.pageIndex.set(0);
     this.load();
   }
 
@@ -173,8 +174,8 @@ export class Cities extends BaseTable<City> implements OnInit {
     return country.code;
   }
 
-  protected override mapSortField(column:string):string{
-    return column==='country' ? 'countryCode' : column;
+  protected override mapSortField(column: string): string {
+    return column === 'country' ? 'countryCode' : column;
   }
 
   isCityEdited(city: City): boolean {

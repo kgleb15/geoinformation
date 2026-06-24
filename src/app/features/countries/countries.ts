@@ -22,7 +22,6 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
     MatProgressSpinnerModule,
     MatIcon,
     MatIconButton,
-    Paginator,
     Header,
     ReactiveFormsModule,
     FormsModule,

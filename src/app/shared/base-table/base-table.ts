@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, Directive, inject, signal } from '@angular/core';
 import { GeoService } from '../../core/services/geo.service';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { ApiResponseModel } from '../../core/models/api-response.model';
 import { Sort } from '@angular/material/sort';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-base-table',
@@ -15,9 +16,10 @@ export abstract class BaseTable<T> {
   totalCount = signal(0);
   isLoading = signal(false);
 
-  pageSize = 10;
-  pageIndex = 0;
+  pageSize = signal(10);
+  pageIndex = signal(0);
   searchName = '';
+  private LIMIT = 10;
 
   sortField = signal<string>('');
   sortDirection = signal<'asc' | 'desc' | ''>('');
@@ -27,10 +29,12 @@ export abstract class BaseTable<T> {
 
   load(): void {
     this.isLoading.set(true);
-    const offset = this.pageIndex * this.pageSize;
-    const sort = this.buildSortParam();
+    const baseOffset = this.pageIndex() * this.pageSize();
+    const sort = this.buildSortParam() || undefined;
+    const search = this.searchName || undefined;
 
-      this.fetchData(this.pageSize, offset, this.searchName || undefined, sort || undefined).subscribe({
+    if (this.pageSize() <= this.LIMIT) {
+      this.fetchData(this.pageSize(), baseOffset, search, sort).subscribe({
         next: (response) => {
           this.items.set(response.data);
           this.totalCount.set(response.metadata.totalCount);
@@ -40,22 +44,44 @@ export abstract class BaseTable<T> {
           this.isLoading.set(false);
         },
       });
+    } else {
+      this.loadMerged(baseOffset, search, sort);
+    }
+  }
+
+  private loadMerged(baseOffset: number, search?: string, sort?: string) {
+    const requests: Observable<ApiResponseModel<T>>[] = [];
+    for (let offset = baseOffset; offset < baseOffset + this.pageSize(); offset += this.LIMIT) {
+      requests.push(this.fetchData(this.LIMIT, offset, search, sort));
+    }
+
+    forkJoin(requests).subscribe({
+      next: (responses) => {
+        const merged = responses.flatMap((r) => r.data);
+        this.items.set(merged);
+        this.totalCount.set(responses[0].metadata.totalCount);
+        this.isLoading.set(false);
+      }, error: () => {
+        this.isLoading.set(false);
+      }
+    })
   }
 
   onSearchChanged(): void {
-    this.pageIndex = 0;
+    this.pageIndex.set(0);
     this.load();
   }
 
-  onPageChange(page: number) {
-    this.pageIndex = page;
+  onPaginatorChanged(event: PageEvent): void {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
     this.load();
   }
 
   onSortChanged(sort : Sort): void {
     this.sortField.set(sort.direction ? this.mapSortField(sort.active) : '');
     this.sortDirection.set(sort.direction as 'asc' | 'desc' | '');
-    this.pageIndex = 0;
+    this.pageIndex.set(0);
     this.load();
   }
 
