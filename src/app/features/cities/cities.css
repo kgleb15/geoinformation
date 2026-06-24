@@ -20,10 +20,6 @@
   font-weight: bold;
 }
 
-.pagination-left {
-  margin-top: 22px;
-}
-
 ::ng-deep .pagination-left .mat-mdc-select-panel {
   background-color: white;
 }
