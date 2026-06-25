@@ -25,4 +25,8 @@ export class CityViewDialog {
   close(): void {
     this.dialogRef.close();
   }
+
+  isEdited(): boolean {
+    return localStorage.getItem('edited_city_' + this.data.id) !== null;
+  }
 }

@@ -1,5 +1,7 @@
 <div class="dialog-content">
-  <h2>{{data.name}}</h2>
+  <h2>{{data.name}}
+    @if (isEdited()) { <span>*</span> }
+  </h2>
 
   <div class="info-grid">
     <div class="info-item">
