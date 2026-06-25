@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Directive, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { GeoService } from '../../core/services/geo.service';
 import { forkJoin, Observable } from 'rxjs';
 import { ApiResponseModel } from '../../core/models/api-response.model';
@@ -61,10 +61,11 @@ export abstract class BaseTable<T> {
         this.items.set(merged);
         this.totalCount.set(responses[0].metadata.totalCount);
         this.isLoading.set(false);
-      }, error: () => {
+      },
+      error: () => {
         this.isLoading.set(false);
-      }
-    })
+      },
+    });
   }
 
   onSearchChanged(): void {

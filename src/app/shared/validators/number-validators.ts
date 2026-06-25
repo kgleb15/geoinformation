@@ -1,5 +1,4 @@
-import { AbstractControl, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
-import { ValidationError } from '@angular/forms/signals';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function integerValidator(): ValidatorFn {
   return (control : AbstractControl): ValidationErrors | null => {

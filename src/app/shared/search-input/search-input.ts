@@ -1,10 +1,10 @@
-import { Component, effect, inject, model, OnDestroy, OnInit, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatFormField, MatInput, MatPrefix } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxControlValueAccessor } from 'ngxtension/control-value-accessor';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-input',

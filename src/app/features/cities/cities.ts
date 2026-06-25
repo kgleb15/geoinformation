@@ -8,7 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell,
   MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable } from '@angular/material/table';
-import { DecimalPipe, NgIf } from '@angular/common';
+import { DecimalPipe} from '@angular/common';
 import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
