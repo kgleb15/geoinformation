@@ -24,10 +24,10 @@
   background-color: white;
 }
 
-::ng-deep .pagination-left .mat-mdc-option:hover {
+::ng-deep .mat-mdc-option:hover {
   background-color: var(--color-nav-blue-light) !important;
 }
 
-::ng-deep .pagination-left .mat-mdc-option.mdc-list-item--selected {
+::ng-deep .mat-mdc-option.mdc-list-item--selected {
   background-color: var(--color-nav-blue) !important;
 }
