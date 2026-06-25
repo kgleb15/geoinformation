@@ -28,11 +28,11 @@ h2 {
   margin-top: 50px;
 }
 
-.cancel-button {
-  color: var(--color-danger);
-  background-color: transparent;
+::ng-deep .cancel-button {
+  color: var(--color-danger)!important;
+  background-color: transparent!important;
 }
 
-.cancel-button:hover {
-  background-color: var(--color-danger-secondary);
+::ng-deep .cancel-button:hover {
+  background-color: var(--color-danger-secondary) !important;
 }
