@@ -6,7 +6,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseTable } from '../../shared/base-table/base-table';

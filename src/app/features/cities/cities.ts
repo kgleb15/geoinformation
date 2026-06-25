@@ -12,7 +12,6 @@ import { DecimalPipe, NgIf } from '@angular/common';
 import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
-import { Paginator } from '../../shared/paginator/paginator';
 import { Header } from '../../shared/header/header';
 import { MatDialog } from '@angular/material/dialog';
 import { CityViewDialog } from './city-view-dialog/city-view-dialog';
