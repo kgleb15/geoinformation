@@ -16,10 +16,10 @@ export abstract class BaseTable<T> {
   totalCount = signal(0);
   isLoading = signal(false);
 
-  pageSize = signal(10);
+  private readonly LIMIT = 10;
+  pageSize = signal(this.LIMIT);
   pageIndex = signal(0);
   searchName = '';
-  private LIMIT = 10;
 
   sortField = signal<string>('');
   sortDirection = signal<'asc' | 'desc' | ''>('');
@@ -78,14 +78,14 @@ export abstract class BaseTable<T> {
     this.load();
   }
 
-  onSortChanged(sort : Sort): void {
+  onSortChanged(sort: Sort): void {
     this.sortField.set(sort.direction ? this.mapSortField(sort.active) : '');
     this.sortDirection.set(sort.direction as 'asc' | 'desc' | '');
     this.pageIndex.set(0);
     this.load();
   }
 
-  protected mapSortField(column: string) : string {
+  protected mapSortField(column: string): string {
     return column;
   }
 
