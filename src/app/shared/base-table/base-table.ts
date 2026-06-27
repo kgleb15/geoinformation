@@ -102,7 +102,7 @@ export abstract class BaseTable<T> {
       relativeTo: this.route,
       queryParams: {
         page: this.pageIndex() || null,
-        pageSize: this.pageSize() || null,
+        pageSize: this.pageSize() !== this.LIMIT ? this.pageSize() : null,
         search: this.searchName || null,
         sort: this.sortField() || null,
         dir: this.sortDirection() || null,
