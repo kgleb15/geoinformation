@@ -11,7 +11,6 @@ import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell,
 import { DecimalPipe} from '@angular/common';
 import { City } from '../../core/models/city.model';
 import { MatIconButton } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
 import { Header } from '../../shared/header/header';
 import { MatDialog } from '@angular/material/dialog';
 import { CityViewDialog } from './city-view-dialog/city-view-dialog';

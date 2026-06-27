@@ -36,34 +36,10 @@ export abstract class BaseTable<T> {
     const sort = this.buildSortParam() || undefined;
     const search = this.searchName || undefined;
 
-    if (this.pageSize() <= this.LIMIT) {
-      this.fetchData(this.pageSize(), baseOffset, search, sort).subscribe({
-        next: (response) => {
-          this.items.set(response.data);
-          this.totalCount.set(response.metadata.totalCount);
-          this.isLoading.set(false);
-        },
-        error: () => {
-          this.isLoading.set(false);
-        },
-      });
-    } else {
-      this.loadMerged(baseOffset, search, sort);
-    }
-  }
-
-  // TODO
-  private loadMerged(baseOffset: number, search?: string, sort?: string) {
-    const requests: Observable<ApiResponseModel<T>>[] = [];
-    for (let offset = baseOffset; offset < baseOffset + this.pageSize(); offset += this.LIMIT) {
-      requests.push(this.fetchData(this.LIMIT, offset, search, sort));
-    }
-
-    forkJoin(requests).subscribe({
-      next: (responses) => {
-        const merged = responses.flatMap((r) => r.data);
-        this.items.set(merged);
-        this.totalCount.set(responses[0].metadata.totalCount);
+    this.fetchData(this.pageSize(), baseOffset, search, sort).subscribe({
+      next: (response) => {
+        this.items.set(response.data);
+        this.totalCount.set(response.metadata.totalCount);
         this.isLoading.set(false);
       },
       error: () => {
