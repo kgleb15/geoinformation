@@ -70,10 +70,11 @@ export class Cities extends BaseTable<City> implements OnInit {
   countriesPageIndex = 0;
   countriesPageSize = 10;
 
-  private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
 
   ngOnInit() {
+    this.readFromUrl();
+
     const countryFromUrl = this.route.snapshot.queryParamMap.get('countryCode');
     if (countryFromUrl) {
       this.selectedCountry = countryFromUrl;
@@ -129,6 +130,7 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   onCountryChange(): void {
     this.pageIndex.set(0);
+    this.syncToUrl({ countryCode: this.selectedCountry || null });
     this.load();
   }
 
@@ -179,5 +181,12 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   isCityEdited(city: City): boolean {
     return localStorage.getItem('edited_city_' + city.id) !== null;
+  }
+
+  protected override syncToUrl(extraParams: Record<string, string | null> = {}): void {
+    super.syncToUrl({
+      country: this.selectedCountry || null,
+      ...extraParams,
+    });
   }
 }

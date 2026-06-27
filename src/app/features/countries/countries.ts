@@ -35,9 +35,9 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
 })
 export class Countries extends BaseTable<Country> implements OnInit {
   columnsToDisplay = ['wikiDataId', 'action', 'name', 'code', 'currencyCodes'];
-  private router = inject(Router);
 
   ngOnInit() {
+    this.readFromUrl();
     this.load();
   }
 
