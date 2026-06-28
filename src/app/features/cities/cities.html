@@ -4,8 +4,8 @@
   <div class="filters">
     <mat-form-field appearance="outline" class="search-country">
       <mat-select
-        [(ngModel)]="selectedCountry"
-        (ngModelChange)="onCountryChange()"
+        [value]="selectedCountry()"
+        (selectionChange)="selectedCountry.set($event.value); onCountryChange()"
         [placeholder]="'cities.filterPlaceholder' | translate"
         panelClass="custom-select-panel"
         (openedChange)="onSelectOpenedChange($event)">

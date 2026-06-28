@@ -59,7 +59,7 @@ import { MatPaginator } from '@angular/material/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Cities extends BaseTable<City> implements OnInit {
-  selectedCountry = '';
+  selectedCountry = signal('');
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -77,7 +77,7 @@ export class Cities extends BaseTable<City> implements OnInit {
 
     const countryFromUrl = this.route.snapshot.queryParamMap.get('country');
     if (countryFromUrl) {
-      this.selectedCountry = countryFromUrl;
+      this.selectedCountry.set(countryFromUrl);
     }
     this.loadCountries();
     this.load();
@@ -120,7 +120,7 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   protected fetchData(limit: number, offset: number, search?: string, sort?: string) {
     return this.geoService
-      .getCities(limit, offset, this.selectedCountry || undefined, search, sort)
+      .getCities(limit, offset, this.selectedCountry() || undefined, search, sort)
       .pipe(
         map((response) => {
           const mergedData = response.data.map((city) => {
@@ -189,7 +189,7 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   protected override syncToUrl(extraParams: Record<string, string | null> = {}): void {
     super.syncToUrl({
-      country: this.selectedCountry || null,
+      country: this.selectedCountry() || null,
       ...extraParams,
     });
   }
