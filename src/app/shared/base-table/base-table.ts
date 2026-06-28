@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { GeoService } from '../../core/services/geo.service';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiResponseModel } from '../../core/models/api-response.model';
-import { Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -95,6 +95,21 @@ export abstract class BaseTable<T> {
     if (search) this.searchName = search;
     if (sort) this.sortField.set(sort);
     if (dir) this.sortDirection.set(dir as 'asc' | 'desc' | '');
+  }
+
+  protected restoreSort(sort: MatSort): void {
+    const field = this.sortField();
+    const dir = this.sortDirection();
+
+    if (field) {
+      Promise.resolve().then(() => {
+        sort.sort({
+          id: field,
+          start: dir,
+          disableClear: false,
+        })
+      });
+    }
   }
 
   protected syncToUrl(extraParams: Record<string, string | null> = {}): void {

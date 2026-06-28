@@ -61,6 +61,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class Cities extends BaseTable<City> implements OnInit {
   selectedCountry = '';
   columnsToDisplay = ['country', 'name', 'region', 'population', 'actions'];
+  @ViewChild(MatSort) sort!: MatSort;
 
   countries = signal<Country[]>([]);
   countriesTotalCount = signal(0);
@@ -80,6 +81,10 @@ export class Cities extends BaseTable<City> implements OnInit {
     }
     this.loadCountries();
     this.load();
+  }
+
+  ngAfterViewInit() {
+    this.restoreSort(this.sort);
   }
 
   loadCountries(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { Country } from '../../core/models/country.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -35,9 +35,15 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
 export class Countries extends BaseTable<Country> implements OnInit {
   columnsToDisplay = ['wikiDataId', 'action', 'name', 'code', 'currencyCodes'];
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit() {
     this.readFromUrl();
     this.load();
+  }
+
+  ngAfterViewInit() {
+    this.restoreSort(this.sort);
   }
 
   protected fetchData(limit: number, offset: number, search?: string, sort?: string) {
