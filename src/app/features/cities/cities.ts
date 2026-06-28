@@ -175,7 +175,7 @@ export class Cities extends BaseTable<City> implements OnInit {
     }
   }
 
-  trackCountry(index: number, country: Country): string {
+  trackCountry(_: number, country: Country): string {
     return country.code;
   }
 

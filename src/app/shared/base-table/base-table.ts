@@ -81,7 +81,7 @@ export abstract class BaseTable<T> {
     return this.sortDirection() === 'desc' ? `-${field}` : `+${field}`;
   }
 
-  protected readFromUrl(extraParams?: (params:URLSearchParams) => void) {
+  protected readFromUrl() {
     const params = this.route.snapshot.queryParamMap;
 
     const page = params.get('page');
