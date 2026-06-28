@@ -90,7 +90,7 @@ export abstract class BaseTable<T> {
     const sort = params.get('sort');
     const dir = params.get('dir');
 
-    if (page) this.pageIndex.set(Number(page));
+    if (page) this.pageIndex.set(Number(page) - 1);
     if (pageSize) this.pageSize.set(Number(pageSize));
     if (search) this.searchName = search;
     if (sort) this.sortField.set(sort);
@@ -101,7 +101,7 @@ export abstract class BaseTable<T> {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        page: this.pageIndex() || null,
+        page: this.pageIndex() > 0 ? this.pageIndex() + 1 : null,
         pageSize: this.pageSize() !== this.LIMIT ? this.pageSize() : null,
         search: this.searchName || null,
         sort: this.sortField() || null,
