@@ -51,6 +51,6 @@ export class Countries extends BaseTable<Country> implements OnInit {
   }
 
   goToCities(countryCode: string): void {
-    this.router.navigate(['/cities'], { queryParams: { countryCode } });
+    this.router.navigate(['/cities'], { queryParams: { country: countryCode } });
   }
 }

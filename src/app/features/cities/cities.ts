@@ -75,7 +75,7 @@ export class Cities extends BaseTable<City> implements OnInit {
   ngOnInit() {
     this.readFromUrl();
 
-    const countryFromUrl = this.route.snapshot.queryParamMap.get('countryCode');
+    const countryFromUrl = this.route.snapshot.queryParamMap.get('country');
     if (countryFromUrl) {
       this.selectedCountry = countryFromUrl;
     }
@@ -134,7 +134,7 @@ export class Cities extends BaseTable<City> implements OnInit {
 
   onCountryChange(): void {
     this.pageIndex.set(0);
-    this.syncToUrl({ countryCode: this.selectedCountry || null });
+    this.syncToUrl();
     this.load();
   }
 
